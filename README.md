@@ -1,41 +1,39 @@
-# humanizer-plugin
+# humanizer-plugin (Cowork marketplace)
 
-Cowork / Claude Code plugin wrapper around the [blader/humanizer](https://github.com/blader/humanizer) skill, which removes signs of AI-generated writing from text using the 29 patterns from Wikipedia's "Signs of AI writing" guide.
+A single-plugin Cowork marketplace that wraps the [blader/humanizer](https://github.com/blader/humanizer) skill.
 
-## What it does
+## What's inside
 
-Invoke `/humanizer` and paste text. The skill rewrites it to remove em-dash overuse, rule-of-three, sycophantic openers, vague attributions, and other AI tells. Optional voice calibration: paste 2-3 paragraphs of your own writing first to bias the rewrite toward your style.
+One plugin: `humanizer` (see `./humanizer/`). It removes signs of AI-generated writing from text using the 29 patterns from Wikipedia's "Signs of AI writing" guide. Invoke with `/humanizer` and paste text; optional voice calibration if you paste a writing sample first.
 
 ## Layout
 
 ```
 humanizer-plugin/
 ├── .claude-plugin/
-│   └── plugin.json
-├── skills/
-│   └── humanizer/
-│       └── SKILL.md
-├── LICENSE
-└── README.md
+│   └── marketplace.json     # lists the plugins in this marketplace
+└── humanizer/
+    ├── .claude-plugin/
+    │   └── plugin.json      # plugin manifest
+    ├── skills/
+    │   └── humanizer/
+    │       └── SKILL.md
+    └── LICENSE
 ```
 
 ## Install
 
-### Claude Code (CLI)
-
-Push this folder to GitHub, then:
+### Claude Code CLI
 
 ```bash
-claude plugin marketplace add <your-gh-user>/humanizer-plugin
+claude plugin marketplace add rustlab1/humanizer-plugin
 claude plugin install humanizer@humanizer-plugin
 ```
 
-Or, for purely local use, the bare skill at `~/.claude/skills/humanizer/SKILL.md` already works without the plugin wrapper.
+### Cowork (desktop app)
 
-### Cowork
-
-Push to GitHub, then install via the marketplace UI at https://claude.com/plugins (Customize > Browse plugins > install from URL).
+Add this repo as a custom marketplace via the Directory UI, or register it manually in `~/Library/Application Support/Claude/.../cowork_plugins/known_marketplaces.json`.
 
 ## Credit
 
-All skill content is from [blader/humanizer](https://github.com/blader/humanizer) (MIT licensed). This wrapper only adds the plugin manifest needed for Cowork distribution.
+All skill content from [blader/humanizer](https://github.com/blader/humanizer) (MIT licensed). This repo only adds the marketplace + plugin manifests required for Cowork distribution.
